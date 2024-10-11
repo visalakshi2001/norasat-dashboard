@@ -1,0 +1,5 @@
+MissionName,SystemName,MissionComponent
+NoraSat Mission,NoraSat Spacecraft,
+NoraSat Mission,Ground Segment,GS1
+NoraSat Mission,Ground Segment,GS2
+NoraSat Mission,Ground Segment,GS3
