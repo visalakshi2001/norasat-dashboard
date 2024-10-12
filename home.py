@@ -16,15 +16,19 @@ def homefunc():
         st.subheader("Orbit Definition")
         orbit = pd.read_csv("results/orbitdetails.csv", index_col=0)
 
-        st.dataframe(orbit.T.reset_index(), hide_index=True)
+        st.dataframe(orbit.T.reset_index().rename(columns={"index": "Orbital Elements"}), hide_index=True, use_container_width=True)
+
 
     with cols[1]:
-        cont=st.container(height=200, border=False)
-        cont.image("results/satellite.jpg", use_column_width=True)
 
+        # cont=st.container(height=200, border=False)
+        st.image("results/satellite.png", width=400)
+        
         st.subheader("Ground Segmentation Definition")
 
         map_df = pd.read_csv("results/groundstation.csv")
 
-        st.dataframe(map_df[["loc_name", "lat", "lon"]], use_container_width=True, hide_index=True)
-        st.map(map_df, zoom=1, size="pointsize", height=300)
+        st.dataframe(map_df.iloc[:,:-1], use_container_width=True, hide_index=True)
+        
+        exp = st.expander("Show on Map")
+        exp.map(map_df, zoom=1, size="pointsize", height=300)
