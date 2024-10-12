@@ -83,7 +83,7 @@ def results():
 
             viz_table = target_analysis[target_analysis["Outputs"] == viz]
             if viz == viz_opts[0]:
-                fig = px.bar(viz_table, x="Inputs", y="Results", text="Results", title="Total Access time")
+                fig = px.bar(viz_table, x="Inputs", y="Results", text="Results", title="Average Daily Access Time")
                 fig.update_traces(marker_color=COLORS[3], textposition="outside")
                 cont.plotly_chart(fig, True)
 

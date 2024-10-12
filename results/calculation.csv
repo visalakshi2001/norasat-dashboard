@@ -1,7 +1,7 @@
 Analysis Name,Analysis Tool,Inputs,Outputs,Req Varified,Completion Status,Verification Status,Results,Unit
-Sedaro Analysis,Sedaro Simulation,GS1,Total Access time,MR3,Complete,PASS,6,min
-Sedaro Analysis,Sedaro Simulation,GS2,Total Access time,MR3,Complete,PASS,10,min
-Sedaro Analysis,Sedaro Simulation,GS3,Total Access time,MR3,Complete,PASS,12,min
+Sedaro Analysis,Sedaro Simulation,GS1,Average Daily Access Time,MR3,Complete,PASS,6,min
+Sedaro Analysis,Sedaro Simulation,GS2,Average Daily Access Time,MR3,Complete,PASS,10,min
+Sedaro Analysis,Sedaro Simulation,GS3,Average Daily Access Time,MR3,Complete,PASS,12,min
 Sedaro Analysis,Sedaro Simulation,GS1,Max Range,MR1,Complete,PASS,150,mi
 Sedaro Analysis,Sedaro Simulation,GS2,Max Range,MR1,Complete,PASS,120,mi
 Sedaro Analysis,Sedaro Simulation,GS3,Max Range,MR1,Complete,PASS,100,mi
