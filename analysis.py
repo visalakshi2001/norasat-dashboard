@@ -5,22 +5,37 @@ import pandas as pd
 import plotly.express as px
 
 COLORS = px.colors.qualitative.Plotly
+more_colors = {
+    "green": "#4bde9c",
+    "red": "#fb8072",
+    "amber": "#ffed6f"
+}
 
 def requirements():
-    # Make a heading of size H2
+
     st.subheader("Requirement Analysis", divider="orange")
     breakdown = pd.read_csv("results/requirements.csv")
 
-    req_choice = st.selectbox("Select Requirement by Name", options=breakdown["ReqName"])
-    target_req = breakdown[breakdown["ReqName"] == req_choice]
+
+    st.dataframe(breakdown.drop(columns=["Results"]).set_index("Requirement Name").style. \
+                 applymap(lambda x: f'background-color: {more_colors["green"]}' if x == "PASS" \
+                           else (
+                               f'background-color: {more_colors["red"]}' if x == "FAIL"   
+                               else f'background-color: {more_colors["amber"]}'
+                           ), 
+                          subset=["Verification Status"]), 
+                 use_container_width=True)
+
+    req_choice = st.selectbox("Select Requirement by Name", options=breakdown["Requirement Name"], index=1)
+    target_req = breakdown[breakdown["Requirement Name"] == req_choice]
 
     dot = graphviz.Digraph(comment='Hierarchy', strict=True)
     for _, row in target_req.iterrows():
-            req = row["ReqName"]
-            verified = row["VerifiedBy"]
-            satisfied = row["SatisfiedBy"]
+            req = row["Requirement Name"]
+            verified = row["Verified By"]
+            satisfied = row["Satisfied By"]
             result = row["Results"]
-            status = row["VerificationStatus"]
+            status = row["Verification Status"]
 
             if pd.notna(req):
                 dot.node(req)
@@ -39,7 +54,7 @@ def requirements():
                     dot.node(result)
                 dot.edge(verified, result, label="analysis output")
             
-            if pd.notna(status):
+            if pd.notna(result) and pd.notna(status):
                 if status not in dot.body:
                     dot.node(status, shape="box")
                 dot.edge(result, status, label="verification status")
@@ -47,12 +62,27 @@ def requirements():
     cols = st.columns([0.35, 0.5])
     cols[0].graphviz_chart(dot, True)
 
-    cols[1].dataframe(target_req.rename({0: "values", 1: "values", 2: "values"}).T, use_container_width=True)
+    cols[1].dataframe(target_req.rename({0: "values", 1: "values", 2: "values", 3: "values", 4: "values"}).T, use_container_width=True)
 
-    showdata = cols[1].checkbox("Show all requirements data")
+    with cols[1]:
+        cont = st.container(border=True)
+        cont.subheader("Warnings")
+        for _, row in target_req.iterrows():
+            req = row["Requirement Name"]
+            verified = row["Verified By"]
+            satisfied = row["Satisfied By"]
+            result = row["Results"]
+            status = row["Verification Status"]
 
-    if showdata:
-        cols[1].dataframe(breakdown.set_index("ReqID"))
+            if pd.isna(verified):
+                cont.warning(f"Requirement {req} is not verified by any analysis", icon="⚠️")
+            if pd.notna(verified) and status != "PASS":
+                cont.error(f"Requirement {req} has not PASSED the analysis")
+
+            if pd.notna(verified) and pd.notna(satisfied) and pd.notna(status) and status == "PASS":
+                cont.info(f"{req} requirement has no warnings/issues")
+
+
 
 
 

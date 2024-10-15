@@ -2,6 +2,11 @@ import streamlit as st
 import pandas as pd
 import graphviz
 
+more_colors = {
+    "green": "#4bde9c",
+    "red": "#fb8072",
+    "amber": "#ffed6f"
+}
 
 def archfunc():
     system = pd.read_csv("results/systems.csv")
@@ -9,7 +14,7 @@ def archfunc():
     transmitter = pd.read_csv("results/transmittertradeoff.csv")
 
     viewlist = ["System Architecture", "Mission", "Transmitter Trade-Off"]
-    view = st.selectbox("Select View", options=viewlist)
+    view = st.selectbox("Select View", options=viewlist, index=2)
 
     dot = graphviz.Digraph(comment='Hierarchy', strict=True)
     cols = st.columns([0.7, 0.3])
@@ -44,4 +49,10 @@ def archfunc():
         cols[0].graphviz_chart(dot, True)
     
     if view == viewlist[2]:
-         st.dataframe(transmitter, hide_index=True, use_container_width=True)
+         st.dataframe(transmitter.style.applymap(lambda x: f'background-color: {more_colors["green"]}' if x == "PASS" \
+                           else (
+                               f'background-color: {more_colors["red"]}' if x == "FAIL"   
+                               else f'background-color: {more_colors["amber"]}'
+                           ), 
+                          subset=["MR_1 Status", "MR_2 Status"]), 
+                      hide_index=True, use_container_width=True)

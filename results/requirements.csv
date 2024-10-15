@@ -1,4 +1,6 @@
-ReqID,ReqName,ReqText,VerifiedBy,SatisfiedBy,Results,VerificationStatus
-MR 1,MR 1 Trasfer Rate,The Satellite has to transfer at a data rate of X bits/s,Rate Analysis,NoraSat,X,PASS
-MR 2,MR 2 SNR,The Signal to Noise ratio needs to be atleast 1.2,SNR Analysis,NoraSat,1.3,PASS
-MR 3,MR 3 Surface Distance,The Satellite can be at a maximum distance of 150 miles,Distance Analysis,NoraSat,150,PASS
+Requirement Name,Description,Verified By,Satisfied By,Results,Verification Status
+MR_1,The NoraSat Mission shall downlink at least 2.1 Tb of data per day,SNR_Calculation,NoraSat_Mission,X,PASS
+MR_2,The NoraSat Mission shall downlink payload data with a Signal to Noise Ratio (SNR) of at least 26 dB,SNR_Calculation,NoraSat_Mission,26.827,PASS
+MR_3,The NoraSat Mission shall utilize a circular orbit at an altitude of 600-700 km,Sedaro_Analysis,NoraSat_Orbit,150,PASS
+MR_4,The NoraSat Mission shall only utilize ground stations that are available to NASA,,NoraSat_GroundSegment,,TBD
+MR_5,The NoraSat Mission shall begin operations on 1st Jan 2025,Sedaro_Analysis,NoraSat_Mission,X,PASS

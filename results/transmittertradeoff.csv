@@ -1,4 +1,4 @@
-TransmitterName,TransmitterPower,Gain,LineLoss,BitRate,SNR,Verified_MR1,Verified_MR2
-μTX-200 Wideband X-Band Transmitter,,,,,,,
-PDTX-1000 Payload Data Transmitter,,,,,,,
-HRT-440 X-Band High Rate Transmitter,,,,,,,
+TransmitterName,Transmitter Power (W),Transmitter Gain (dBi),Transmitter Line Loss (dB),"Transmitter Data Rate (Mbps) ",Signal-to-Noise Ratio (dB),MR_1 Status,MR_2 Status
+μTX-200 Wideband X-Band Transmitter,78,20,-4.5,3200,25.058,PASS,FAIL
+PDTX-1000 Payload Data Transmitter,45,20,-4.5,250,33.844,FAIL,PASS
+HRT-440 X-Band High Rate Transmitter,15,20,-4.5,440,26.827,PASS,PASS
