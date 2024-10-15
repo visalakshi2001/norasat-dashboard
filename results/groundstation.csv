@@ -1,4 +1,4 @@
-ID,Name,lat,lon,Altitude,AntennaSize,AntennaGain,pointsize
-GS1,,1.3146631,103.8454093,,,,100
-GS2,,21.5513258,-79.6017351,,,,150
-GS3,,51.1642292,10.4541,,,,180
+ID,Ground Station Name,Latitude (deg),Longitude (deg),Altitude (km),Antenna Size,Antenna Gain (dBi),pointsize
+GS1,Wallops Flight Facility,37.9455,-75.4611,-0.0185,,56.2,100
+GS2,Singapore,1.3919,103.8350,0.0300,,56.2,150
+GS3,Kourou,4.9489,-52.3095,0.0520,,56.2,180

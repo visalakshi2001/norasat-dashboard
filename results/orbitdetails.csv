@@ -1,3 +1,3 @@
-﻿Orbital Element,Semi-major axis,Eccentricity,Periapsis from surface,Apoapsis from surface,Inclination,RAAN,Argument of periapsis,True anomaly,Period
-Value,2782.53,0,342,342,45,0,0,0,6213.149
-Unit,km,-,km,km,deg,deg,deg,deg,sec
+﻿Orbital Element,Semi-major axis,Eccentricity,Altitude at Periapsis,Altitude at Apoapsis,Inclination,RAAN,Argument of periapsis,True anomaly
+Value,7021,0,650,650,30,0,0,0
+Unit,km,-,km,km,deg,deg,deg,deg

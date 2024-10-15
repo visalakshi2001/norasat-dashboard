@@ -24,11 +24,12 @@ def homefunc():
         # cont=st.container(height=200, border=False)
         st.image("results/satellite.png", width=400)
         
-        st.subheader("Ground Segmentation Definition")
+        st.subheader("Ground Segment")
 
         map_df = pd.read_csv("results/groundstation.csv")
 
-        st.dataframe(map_df.iloc[:,:-1], use_container_width=True, hide_index=True)
+        st.dataframe(map_df[["ID","Ground Station Name","Latitude (deg)","Longitude (deg)","Altitude (km)","Antenna Gain (dBi)"]], 
+                     use_container_width=True, hide_index=True)
         
         exp = st.expander("Show on Map")
-        exp.map(map_df, zoom=1, size="pointsize", height=300)
+        exp.map(map_df.rename(columns={"Latitude (deg)": "lat", "Longitude (deg)": "lon"}), zoom=1, size="pointsize", height=300)
