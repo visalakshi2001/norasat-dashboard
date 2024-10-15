@@ -76,6 +76,8 @@ def requirements():
 
             if pd.isna(verified):
                 cont.warning(f"Requirement {req} is not verified by any analysis", icon="⚠️")
+            if pd.isna(satisfied):
+                cont.warning(f"Requirement {req} is not satisfied by any mission element", icon="⚠️")
             if pd.notna(verified) and status != "PASS":
                 cont.error(f"Requirement {req} has not PASSED the analysis")
 

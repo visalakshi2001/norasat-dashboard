@@ -1,6 +1,6 @@
-Requirement Name,Description,Verified By,Satisfied By,Results,Verification Status
-MR_1,The NoraSat Mission shall downlink at least 2.1 Tb of data per day,SNR_Calculation,NoraSat_Mission,X,PASS
-MR_2,The NoraSat Mission shall downlink payload data with a Signal to Noise Ratio (SNR) of at least 26 dB,SNR_Calculation,NoraSat_Mission,26.827,PASS
-MR_3,The NoraSat Mission shall utilize a circular orbit at an altitude of 600-700 km,Sedaro_Analysis,NoraSat_Orbit,150,PASS
-MR_4,The NoraSat Mission shall only utilize ground stations that are available to NASA,,NoraSat_GroundSegment,,TBD
-MR_5,The NoraSat Mission shall begin operations on 1st Jan 2025,Sedaro_Analysis,NoraSat_Mission,X,PASS
+Requirement Name,Description,Satisfied By,Verified By,Results,Verification Status
+MR_1,The NoraSat Mission shall downlink at least 2.1 Tb of data per day,NoraSat_Mission,SNR_Calculation,X,PASS
+MR_2,The NoraSat Mission shall downlink payload data with a Signal to Noise Ratio (SNR) of at least 26 dB,NoraSat_Mission,SNR_Calculation,26.827,PASS
+MR_3,The NoraSat Mission shall utilize a circular orbit at an altitude of 600-700 km,NoraSat_Orbit,Sedaro_Analysis,150,PASS
+MR_4,The NoraSat Mission shall only utilize ground stations that are available to NASA,NoraSat_GroundSegment,,,TBD
+MR_5,The NoraSat Mission shall begin operations on 1st Jan 2025,NoraSat_Mission,Sedaro_Analysis,X,PASS
