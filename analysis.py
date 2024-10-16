@@ -25,6 +25,22 @@ def requirements():
                            ), 
                           subset=["Verification Status"]), 
                  use_container_width=True)
+    
+    cont = st.container(border=True)
+    cont.subheader("Warnings")
+    for _, row in breakdown.iterrows():
+        req = row["Requirement Name"]
+        verified = row["Verified By"]
+        satisfied = row["Satisfied By"]
+        result = row["Results"]
+        status = row["Verification Status"]
+
+        if pd.isna(verified):
+            cont.warning(f"Requirement {req} is not verified by any analysis", icon="⚠️")
+        if pd.isna(satisfied):
+            cont.warning(f"Requirement {req} is not satisfied by any mission element", icon="⚠️")
+        if pd.notna(verified) and status != "PASS":
+            cont.error(f"Requirement {req} has not PASSED the analysis")
 
     req_choice = st.selectbox("Select Requirement by Name", options=breakdown["Requirement Name"], index=1)
     target_req = breakdown[breakdown["Requirement Name"] == req_choice]
@@ -64,25 +80,25 @@ def requirements():
 
     cols[1].dataframe(target_req.rename({0: "values", 1: "values", 2: "values", 3: "values", 4: "values"}).T, use_container_width=True)
 
-    with cols[1]:
-        cont = st.container(border=True)
-        cont.subheader("Warnings")
-        for _, row in target_req.iterrows():
-            req = row["Requirement Name"]
-            verified = row["Verified By"]
-            satisfied = row["Satisfied By"]
-            result = row["Results"]
-            status = row["Verification Status"]
+    # with cols[1]:
+    #     cont = st.container(border=True)
+    #     cont.subheader("Warnings")
+    #     for _, row in target_req.iterrows():
+    #         req = row["Requirement Name"]
+    #         verified = row["Verified By"]
+    #         satisfied = row["Satisfied By"]
+    #         result = row["Results"]
+    #         status = row["Verification Status"]
 
-            if pd.isna(verified):
-                cont.warning(f"Requirement {req} is not verified by any analysis", icon="⚠️")
-            if pd.isna(satisfied):
-                cont.warning(f"Requirement {req} is not satisfied by any mission element", icon="⚠️")
-            if pd.notna(verified) and status != "PASS":
-                cont.error(f"Requirement {req} has not PASSED the analysis")
+    #         if pd.isna(verified):
+    #             cont.warning(f"Requirement {req} is not verified by any analysis", icon="⚠️")
+    #         if pd.isna(satisfied):
+    #             cont.warning(f"Requirement {req} is not satisfied by any mission element", icon="⚠️")
+    #         if pd.notna(verified) and status != "PASS":
+    #             cont.error(f"Requirement {req} has not PASSED the analysis")
 
-            if pd.notna(verified) and pd.notna(satisfied) and pd.notna(status) and status == "PASS":
-                cont.info(f"{req} requirement has no warnings/issues")
+    #         if pd.notna(verified) and pd.notna(satisfied) and pd.notna(status) and status == "PASS":
+    #             cont.info(f"{req} requirement has no warnings/issues")
 
 
 
@@ -103,29 +119,33 @@ def results():
         with cols[0]:
             cont = st.container(border=True)
             cont.subheader("Analysis Overview")
-            cont.dataframe(target_analysis.set_index("Analysis Name"), use_container_width=True)
+            cont.markdown(f"**Analysis Name:** {analysis}", True)
+            cont.dataframe(target_analysis.drop(columns=["Analysis Name", "Mission Element", "OutputName"]).set_index("Analysis Tool"), use_container_width=True)
         
         with cols[1]:
             cont = st.container(border=True)
             cont.subheader("Visualizations")
-            cont.write("If any applicable")
+            cont.caption("If any applicable")
 
-            viz_opts = target_analysis["Outputs"].unique()
+            viz_opts = target_analysis["OutputName"].unique()
             viz = cont.radio("Select Output", options=viz_opts, horizontal=True)
 
-            viz_table = target_analysis[target_analysis["Outputs"] == viz]
+            viz_table = target_analysis[target_analysis["OutputName"] == viz]
             if viz == viz_opts[0]:
-                fig = px.bar(viz_table, x="Inputs", y="Results", text="Results", title="Average Daily Access Time")
-                fig.update_traces(marker_color=COLORS[3], textposition="outside")
+                fig = px.bar(viz_table, x="Mission Element", y="Results", color="Mission Element",
+                             color_discrete_map=dict(zip(viz_table["Mission Element"], 
+                                                         [COLORS[1] if bar=="Total" else COLORS[3] for bar in viz_table["Mission Element"]])),
+                             text="Results", title="Average Daily Access Time")
+                fig.update_traces(textposition="outside", showlegend=False)
                 cont.plotly_chart(fig, True)
-
+           
             if viz == viz_opts[1]:
                 cont.markdown("**Max Range**")
                 for i,row in viz_table.iterrows():
                     value = str(row["Results"]) + " " + str(row["Unit"]) if row["Unit"] else str(row["Results"])
                     delta = str(row["Verification Status"])
                     deltacolor = "normal" if delta == "PASS" else "inverse"
-                    cont.metric(label=row["Inputs"], value=value, delta=delta, delta_color=deltacolor)
+                    cont.metric(label=row["Mission Element"], value=value, delta=delta, delta_color=deltacolor)
 
     cols = st.columns(2)
     if analysis == analysis_opts[1]:

@@ -1,11 +1,11 @@
-Analysis Name,Analysis Tool,Inputs,Outputs,Req Verified,Completion Status,Verification Status,Results,Unit
-Sedaro Analysis,Sedaro Simulation,GS1,Average Daily Access Time,MR3,Complete,PASS,3957,min
-Sedaro Analysis,Sedaro Simulation,GS2,Average Daily Access Time,MR3,Complete,PASS,5747,min
-Sedaro Analysis,Sedaro Simulation,GS3,Average Daily Access Time,MR3,Complete,PASS,6072,min
-Sedaro Analysis,Sedaro Simulation,Total,Total time atleast one of the GS is in view,-,-,-,14691,min
-Sedaro Analysis,Sedaro Simulation,GS1,Max Range,MR1,Complete,PASS,150,mi
-Sedaro Analysis,Sedaro Simulation,GS2,Max Range,MR1,Complete,PASS,120,mi
-Sedaro Analysis,Sedaro Simulation,GS3,Max Range,MR1,Complete,PASS,100,mi
-SNR Calculations,SNR,GS1,SNR,MR2,Complete,PASS,1.2,
-SNR Calculations,SNR,GS2,SNR,MR2,Complete,PASS,1.3,
-SNR Calculations,SNR,GS3,SNR,MR2,Complete,PASS,1.0,
+Analysis Name,Analysis Tool,Mission Element,Outputs,OutputName,Results,Unit,Req Verified,Completion Status,Verification Status
+Sedaro Analysis,Sedaro Simulation,Transmitter 1,Average Daily Access Time (GS1),Average Daily Access Time,3957,sec,MR_3,Complete,PASS
+Sedaro Analysis,Sedaro Simulation,Transmitter 2,Average Daily Access Time (GS2),Average Daily Access Time,5747,sec,MR_3,Complete,PASS
+Sedaro Analysis,Sedaro Simulation,Transmitter 3,Average Daily Access Time (GS3),Average Daily Access Time,6072,sec,MR_3,Complete,PASS
+Sedaro Analysis,Sedaro Simulation,Total,Total time atleast one of the GS is in view,Average Daily Access Time,14691,sec,-,-,-
+Sedaro Analysis,Sedaro Simulation,Transmitter 1,Max Range (Transmitter 1),Max Range,2939,km,MR_1,Complete,PASS
+Sedaro Analysis,Sedaro Simulation,Transmitter 2,Max Range (Transmitter 2),Max Range,2948,km,MR_1,Complete,PASS
+Sedaro Analysis,Sedaro Simulation,Transmitter 3,Max Range (Transmitter 3),Max Range,2955,km,MR_1,Complete,PASS
+SNR Calculations,SNR,Transmitter 1,SNR (Transmitter 1),SNR,1.2,dB,MR_2,Complete,PASS
+SNR Calculations,SNR,Transmitter 2,SNR (Transmitter 2),SNR,1.3,dB,MR_2,Complete,PASS
+SNR Calculations,SNR,Transmitter 3,SNR (Transmitter 3),SNR,1.0,dB,MR_2,Complete,PASS
