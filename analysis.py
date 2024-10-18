@@ -137,6 +137,7 @@ def results():
                                                          [COLORS[1] if bar=="Total" else COLORS[3] for bar in viz_table["Mission Element"]])),
                              text="Results", title="Average Daily Access Time")
                 fig.update_traces(textposition="outside", showlegend=False)
+                fig.update_layout(yaxis_title="Total Time (s)")
                 cont.plotly_chart(fig, True)
            
             if viz == viz_opts[1]:
