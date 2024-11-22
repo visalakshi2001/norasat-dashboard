@@ -75,10 +75,10 @@ def requirements():
                     dot.node(status, shape="box")
                 dot.edge(result, status, label="verification status")
             
-    cols = st.columns([0.35, 0.5])
+    cols = st.columns([0.23 ,0.5])
     cols[0].graphviz_chart(dot, True)
 
-    cols[1].dataframe(target_req.rename({0: "values", 1: "values", 2: "values", 3: "values", 4: "values"}).T, use_container_width=True)
+    cols[-1].dataframe(target_req.rename({0: "values", 1: "values", 2: "values", 3: "values", 4: "values"}).T, use_container_width=True)
 
     # with cols[1]:
     #     cont = st.container(border=True)
