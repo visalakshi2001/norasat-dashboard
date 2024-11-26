@@ -13,11 +13,12 @@ more_colors = {
 
 def requirements():
 
-    st.subheader("Requirement Analysis", divider="orange")
+    st.subheader("Requirements Summary", divider="orange")
     breakdown = pd.read_csv("results/requirements.csv")
 
+    cols = st.columns([0.7,0.15])
 
-    st.dataframe(breakdown.drop(columns=["Results"]).set_index("Requirement Name").style. \
+    cols[0].dataframe(breakdown.drop(columns=["Results"]).set_index("Requirement Name").style. \
                  applymap(lambda x: f'background-color: {more_colors["green"]}' if x == "PASS" \
                            else (
                                f'background-color: {more_colors["red"]}' if x == "FAIL"   
@@ -26,7 +27,7 @@ def requirements():
                           subset=["Verification Status"]), 
                  use_container_width=True)
     
-    cont = st.container(border=True)
+    cont = cols[1].container(border=True)
     cont.subheader("Warnings")
     for _, row in breakdown.iterrows():
         req = row["Requirement Name"]
