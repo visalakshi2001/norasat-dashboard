@@ -18,14 +18,15 @@ def requirements():
 
     cols = st.columns([0.7,0.15])
 
-    st.dataframe(breakdown.drop(columns=["Results"]).set_index("Requirement Name").style. \
+    st.dataframe(breakdown.drop(columns=["Results"]).style. \
                  applymap(lambda x: f'background-color: {more_colors["green"]}' if x == "PASS" \
                            else (
                                f'background-color: {more_colors["red"]}' if x == "FAIL"   
                                else f'background-color: {more_colors["amber"]}'
                            ), 
-                          subset=["Verification Status"]), 
-                 use_container_width=True)
+                          subset=["Verification Status"]). \
+                applymap(lambda x: 'color: black'), 
+                 use_container_width=True, hide_index=True)
     
     cont = st.container(border=True)
     cont.subheader("Warnings")
@@ -79,7 +80,8 @@ def requirements():
     cols = st.columns([0.23 ,0.5])
     cols[0].graphviz_chart(dot, True)
 
-    cols[-1].dataframe(target_req.rename({0: "values", 1: "values", 2: "values", 3: "values", 4: "values"}).T, use_container_width=True)
+    cols[-1].dataframe(target_req.rename({0: "values", 1: "values", 2: "values", 3: "values", 4: "values"}).T.reset_index(). \
+        style.applymap(lambda x: 'color: black'), use_container_width=True, hide_index=True)
 
     # with cols[1]:
     #     cont = st.container(border=True)
